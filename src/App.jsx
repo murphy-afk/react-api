@@ -42,10 +42,12 @@ function App() {
                 <p className='card-subtitle fs-7 text-info-emphasis'>{actor.nationality}</p>
                 <p className="card-text">{actor.biography}</p>
                 <div>
-                  <p className='border-bottom'>Most Known for</p>
+                  <p className='border-bottom'>Most known for</p>
                   <ul className="list ps-0 mt-1">
-                    {actor[gender === 'actors' ? "most_famous_movies" : "known_for"]?.map((movie, index) =>
-                      <li key={index}>{movie}</li>
+                    {actor[gender === 'actress' ? "most_famous_movies" : "known_for"]?.map(
+                      (movie, index) => (
+                        <li key={index}>{movie}</li>
+                      )
                     )}
                   </ul>
                 </div>
