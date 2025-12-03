@@ -1,0 +1,17 @@
+.card-img-top {
+      max-height: 200px;
+    max-width: 200px;
+    aspect-ratio: 1;
+}
+
+.fs-7 {
+  font-size: 0.8rem;
+}
+
+.fs-8 {
+  font-size: 0.6rem;
+}
+
+.list {
+      list-style: none;
+}

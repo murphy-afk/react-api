@@ -21,19 +21,22 @@ function App() {
 
   return (
     <>
-      <h1>Actresses</h1>
+      <h1 className='text-center py-4'>Actresses</h1>
       <div className="container">
         <div className="row row-cols-3">
           {actresses.map(actress =>
             <div className="card col" key={actress.id}>
               <img src={actress.image} className="card-img-top" alt={actress.name} />
               <div className="card-body">
-                <h5 className="card-title">{actress.name}</h5>
-                <p className='card-subtitle'>{actress.nationality}</p>
-                <p className='card-subtitle'>{actress.birth_year}</p>
+                <h5 className="card-title mb-1">{actress.name}</h5>
+                <p className='card-subtitle text-body-secondary fs-8'>{actress.birth_year}
+                  {actress.death_year && ` - ${actress.death_year}`}
+                </p>
+                <p className='card-subtitle fs-7 text-info-emphasis'>{actress.nationality}</p>
                 <p className="card-text">{actress.biography}</p>
-                <div>Most Known for:
-                  <ul>
+                <div>
+                  <p className='border-bottom'>Most Known for</p>
+                  <ul className="list ps-0 mt-1">
                     {actress.most_famous_movies.map((movie, index) =>
                       <li key={index}>{movie}</li>
                     )}
