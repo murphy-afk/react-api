@@ -1,43 +1,50 @@
-import { useEffect, useEffectEvent, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
-  const [actresses, setActresses] = useState([]);
+  const [actors, setActors] = useState([]);
+  const baseUrl = "https://lanciweb.github.io/demo/api/";
+  const [gender, setGender] = useState('actors');
 
   useEffect(() => {
     console.log("useEffect is happening");
-    fetchData()
-  }, []);
+    fetchData();
+  }, [gender]);
 
   function fetchData() {
-    axios.get("https://lanciweb.github.io/demo/api/actresses/")
+    axios.get(`${baseUrl}${gender}/`)
       .then((resp) => {
         console.log("fetchData is happening");
-        setActresses(resp.data);
-      })
+        setActors(resp.data);
+      });
   }
-
   return (
     <>
-      <h1 className='text-center py-4'>Actresses</h1>
+      <h1 className='text-center py-4'>
+        {gender === 'actors' ? "Actors" : "Actresses"}
+      </h1>
       <div className="container">
+        <div className="btn-container text-center mb-3 ">
+          <button className='btn btn-primary border' onClick={() => setGender('actors')}>See Actors</button>
+          <button className='btn btn-primary border' onClick={() => setGender('actresses')}>See Actresses</button>
+        </div>
         <div className="row row-cols-3">
-          {actresses.map(actress =>
-            <div className="card col" key={actress.id}>
-              <img src={actress.image} className="card-img-top" alt={actress.name} />
+          {actors.map(actor =>
+            <div className="card col" key={actor.id}>
+              <img src={actor.image} className="card-img-top" alt={actor.name} />
               <div className="card-body">
-                <h5 className="card-title mb-1">{actress.name}</h5>
-                <p className='card-subtitle text-body-secondary fs-8'>{actress.birth_year}
-                  {actress.death_year && ` - ${actress.death_year}`}
+                <h5 className="card-title mb-1">{actor.name}</h5>
+                <p className='card-subtitle text-body-secondary fs-8'>{actor.birth_year}
+                  {actor.death_year && ` - ${actor.death_year}`}
                 </p>
-                <p className='card-subtitle fs-7 text-info-emphasis'>{actress.nationality}</p>
-                <p className="card-text">{actress.biography}</p>
+                <p className='card-subtitle fs-7 text-info-emphasis'>{actor.nationality}</p>
+                <p className="card-text">{actor.biography}</p>
                 <div>
                   <p className='border-bottom'>Most Known for</p>
                   <ul className="list ps-0 mt-1">
-                    {actress.most_famous_movies.map((movie, index) =>
+                    {actor[gender === 'actors' ? "most_famous_movies" : "known_for"]?.map((movie, index) =>
                       <li key={index}>{movie}</li>
                     )}
                   </ul>
