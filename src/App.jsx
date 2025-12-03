@@ -44,7 +44,7 @@ function App() {
                 <div>
                   <p className='border-bottom'>Most known for</p>
                   <ul className="list ps-0 mt-1">
-                    {actor[gender === 'actress' ? "most_famous_movies" : "known_for"]?.map(
+                    {actor[gender === 'actors' ? "known_for" : "most_famous_movies"]?.map(
                       (movie, index) => (
                         <li key={index}>{movie}</li>
                       )
