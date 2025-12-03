@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 import Card from './components/Card';
+import Button from './components/Button';
 
 function App() {
   const [actors, setActors] = useState([]);
@@ -28,8 +29,10 @@ function App() {
       </h1>
       <div className="container">
         <div className="btn-container text-center mb-3 ">
-          <button className='btn btn-primary border' onClick={() => setGender('actors')}>See Actors</button>
-          <button className='btn btn-primary border' onClick={() => setGender('actresses')}>See Actresses</button>
+          <Button handleCLick={() => setGender('actors')} gender={"Actors"}/>
+          <Button handleCLick={() => setGender('actresses')} gender={"Actresses"}/>
+          {/* <button className='btn btn-primary border' onClick={() => setGender('actors')}>See Actors</button>
+          <button className='btn btn-primary border' onClick={() => setGender('actresses')}>See Actresses</button> */}
         </div>
         <div className="row row-cols-3">
           {actors.map(actor =>
