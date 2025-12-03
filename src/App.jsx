@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
+import Card from './components/Card';
 
 function App() {
   const [actors, setActors] = useState([]);
@@ -32,27 +33,7 @@ function App() {
         </div>
         <div className="row row-cols-3">
           {actors.map(actor =>
-            <div className="card col" key={actor.id}>
-              <img src={actor.image} className="card-img-top" alt={actor.name} />
-              <div className="card-body">
-                <h5 className="card-title mb-1">{actor.name}</h5>
-                <p className='card-subtitle text-body-secondary fs-8'>{actor.birth_year}
-                  {actor.death_year && ` - ${actor.death_year}`}
-                </p>
-                <p className='card-subtitle fs-7 text-info-emphasis'>{actor.nationality}</p>
-                <p className="card-text">{actor.biography}</p>
-                <div>
-                  <p className='border-bottom'>Most known for</p>
-                  <ul className="list ps-0 mt-1">
-                    {actor[gender === 'actors' ? "known_for" : "most_famous_movies"]?.map(
-                      (movie, index) => (
-                        <li key={index}>{movie}</li>
-                      )
-                    )}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <Card actor={actor} gender={gender} key={actor.id}/>
           )}
         </div>
       </div>
