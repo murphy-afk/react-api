@@ -31,8 +31,6 @@ function App() {
         <div className="btn-container text-center mb-3 ">
           <Button handleCLick={() => setGender('actors')} gender={"Actors"}/>
           <Button handleCLick={() => setGender('actresses')} gender={"Actresses"}/>
-          {/* <button className='btn btn-primary border' onClick={() => setGender('actors')}>See Actors</button>
-          <button className='btn btn-primary border' onClick={() => setGender('actresses')}>See Actresses</button> */}
         </div>
         <div className="row row-cols-3">
           {actors.map(actor =>
